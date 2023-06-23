@@ -7,7 +7,7 @@ import (
 	"github.com/GGboya/bluebell/dao/redis"
 	"github.com/GGboya/bluebell/logger"
 	"github.com/GGboya/bluebell/pkg/snowflake"
-	"github.com/GGboya/bluebell/router"
+	routes "github.com/GGboya/bluebell/router"
 	"github.com/GGboya/bluebell/setting"
 	"log"
 	"net/http"
@@ -55,6 +55,7 @@ func main() {
 	}
 
 	// 5. 注册路由
+
 	r := routes.Setup(settings.Conf.Mode)
 	// 6. 启动服务（优雅关机）
 	fmt.Println(settings.Conf.Port)

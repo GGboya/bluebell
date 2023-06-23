@@ -4,6 +4,7 @@ port: 8080
 version: "v0.1.0"
 start_time: "2023-06-23"
 machine_id: 1
+
 log:
   level: "debug"
   filename: "web_app.log"
