@@ -6,6 +6,7 @@ import (
 	"github.com/GGboya/bluebell/dao/mysql"
 	"github.com/GGboya/bluebell/dao/redis"
 	"github.com/GGboya/bluebell/logger"
+	"github.com/GGboya/bluebell/pkg/snowflake"
 	"github.com/GGboya/bluebell/router"
 	"github.com/GGboya/bluebell/setting"
 	"log"
@@ -47,6 +48,12 @@ func main() {
 		return
 	}
 	defer redis.Close()
+	// 雪花算法，分布式ID
+	if err := snowflake.Init(settings.Conf.StartTime, settings.Conf.MachineID); err != nil {
+		fmt.Printf("init snowflake failed, err:%v\n", err)
+		return
+	}
+
 	// 5. 注册路由
 	r := routes.Setup(settings.Conf.Mode)
 	// 6. 启动服务（优雅关机）
